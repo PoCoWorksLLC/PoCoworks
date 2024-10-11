@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John's Handyman Services</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>PoCo Works LLC</h1>
+    <h2>Home Repair Services</h2>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Schedule</a>
+    </nav>
+  </header>
+
+  <section id="services">
+    <h2>What I Do</h2>
+    <p>Fixing, repairing, and improving homes for over 10 years. Carpentry, fabrication, plumbing, electrical, and more!</p>
+    
+    <!-- Collapsible Button for Additional Services -->
+    <button class="collapsible">More</button>
+    <div class="collapsible-content">
+       <ul>
+    <li><strong>Carpentry</strong>: Custom shelving, trim work, cabinet installation</li>
+    <li><strong>Plumbing</strong>: Leaky faucets, toilet repairs, pipe replacements</li>
+    <li><strong>Hanging and Mounting</strong>: Art, mirrors, TVs, shelving</li>
+    <li><strong>Electrical</strong>: Light fixture installations, outlet repairs</li>
+    <li><strong>Painting</strong>: Interior and exterior painting</li>
+    <li><strong>Flooring</strong>: Tile, installation, and repairs</li>
+    <li><strong>Smart Home Installations</strong>: Smart locks, cameras, thermostats</li>
+  </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Schedule an Appointment</h2>
+    <p>Ready to get started? Click the button below to book an appointment.</p>
+    <a href="https://calendly.com/yourname" class="btn">Schedule Now</a>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="your-image1.jpg" alt="Project 1">
+      <img src="your-image2.jpg" alt="Project 2">
+      <img src="your-image3.jpg" alt="Project 3">
+    </div>
+  </section>
+  
+  <footer>
+    <p>PoCo Works LLC</p>
+  </footer>
+
+  <!-- JavaScript to handle the collapsible functionality -->
+  <script>
+    const collapsible = document.querySelector(".collapsible");
+    const content = document.querySelector(".collapsible-content");
+
+    collapsible.addEventListener("click", function() {
+      this.classList.toggle("active");
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  </script>
+</body>
+</html>
