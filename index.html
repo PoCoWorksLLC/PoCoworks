@@ -24,17 +24,17 @@
     <!-- Collapsible Button for Additional Services -->
     <button class="collapsible">More</button>
     <div class="collapsible-content">
-       <ul>
-    <li><strong>Carpentry</strong>: Custom shelving, trim work, cabinets, doors</li>
-    <li><strong>Plumbing</strong>: Leaky faucets, toilet repairs, drains, pipes, showerheads, faucet and toilet replacements</li>
-    <li><strong>Hanging and Mounting</strong>: Art, mirrors, TVs, shelving</li>
-    <li><strong>Electrical</strong>: Light fixture, outlets, switches, ceiling fans, bathroom vents</li>
-    <li><strong>Painting</strong>: Interior and exterior painting</li>
-    <li><strong>Drywall</strong>: Walls, ceilings, plaster</li>
-    <li><strong>Flooring</strong>: Tile, wood, installation and repairs</li>
-    <li><strong>Smart Home Installations</strong>: Smart locks, cameras, thermostats</li>
-    <li><strong>Exterior</strong>: Downspouts, mailboxes, fencing, decks, window ACs</li>
-  </ul>
+      <ul>
+        <li><strong>Carpentry</strong>: Custom shelving, trim work, cabinets, doors</li>
+        <li><strong>Plumbing</strong>: Leaky faucets, toilet repairs, drains, pipes, showerheads, faucet and toilet replacements</li>
+        <li><strong>Hanging and Mounting</strong>: Art, mirrors, TVs, shelving</li>
+        <li><strong>Electrical</strong>: Light fixture, outlets, switches, ceiling fans, bathroom vents</li>
+        <li><strong>Painting</strong>: Interior and exterior painting</li>
+        <li><strong>Drywall</strong>: Walls, ceilings, plaster</li>
+        <li><strong>Flooring</strong>: Tile, wood, installation and repairs</li>
+        <li><strong>Smart Home Installations</strong>: Smart locks, cameras, thermostats</li>
+        <li><strong>Exterior</strong>: Downspouts, mailboxes, fencing, decks, window ACs</li>
+      </ul>
     </div>
   </section>
 
@@ -46,10 +46,22 @@
 
   <section id="gallery">
     <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="images/Dinning Room.jpg" alt="Dinning Room">
-      <img src="images/Bathroom.jpg" alt="Bathroom">
-      <img src="images/Window Trim.jpg" alt="Window Trim">
+    <div class="carousel">
+      <div class="carousel-slide">
+        <img src="images/Dinning Room.jpg" alt="Dinning Room">
+      </div>
+      <div class="carousel-slide">
+        <img src="images/Bathroom.jpg" alt="Bathroom">
+      </div>
+      <div class="carousel-slide">
+        <img src="images/Window Trim.jpg" alt="Window Trim">
+      </div>
+    </div>
+
+    <!-- Modal for Zoom Effect -->
+    <div class="modal" id="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modal-image">
     </div>
   </section>
   
@@ -57,8 +69,9 @@
     <p>PoCo Works LLC</p>
   </footer>
 
-  <!-- JavaScript to handle the collapsible functionality -->
+  <!-- JavaScript to handle the collapsible functionality and carousel -->
   <script>
+    // Collapsible content functionality
     const collapsible = document.querySelector(".collapsible");
     const content = document.querySelector(".collapsible-content");
 
@@ -70,6 +83,52 @@
         content.style.maxHeight = content.scrollHeight + "px";
       }
     });
+
+    // Carousel functionality
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.transform = `translateX(${(i - index) * 100}%)`;
+      });
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    function previousSlide() {
+      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    // Start by showing the first slide
+    showSlide(slideIndex);
+
+    // Modal (Zoom) functionality
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeButton = document.querySelector('.close');
+
+    slides.forEach((slide) => {
+      slide.addEventListener('click', (e) => {
+        modal.style.display = 'flex';
+        modalImage.src = e.target.src;
+      });
+    });
+
+    closeButton.onclick = function () {
+      modal.style.display = 'none';
+    };
+
+    // Close the modal if clicked outside the image
+    window.onclick = function (e) {
+      if (e.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
   </script>
 </body>
 </html>
