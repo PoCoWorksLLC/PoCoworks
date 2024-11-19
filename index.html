@@ -1,75 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PoCo Works LLC Home Repair Services</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoCo Works LLC Home Repair Services</title>
+    <style>
+        /* Previous styles remain the same until carousel-controls */
+        /* Base styles */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ff6600;
+            padding: 20px;
+            border-bottom: 4px solid #333;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Navigation styles */
+        nav {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 20px;
+        }
+
+        #services, #contact {
+            background-color: #fff;
+            border-top: 4px solid #333;
+        }
+
+        #gallery {
+            background-color: #f9f9f9;
+            border-top: 4px solid #333;
+        }
+
+        /* Carousel */
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 15px;
+            text-align: left;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .image-caption h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2em;
+        }
+
+        .image-caption p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Updated carousel controls and thumbnails */
+        .carousel-controls {
+            text-align: center;
+            padding: 10px;
+            margin: 10px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .carousel-control {
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+        }
+
+        .carousel-control:hover {
+            background-color: #ff6600;
+            color: #333;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            overflow: hidden;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail.active {
+            border-color: #ff6600;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Modal (Zoom Effect) Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border: 3px solid #ff6600;
+            border-radius: 8px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Button for scheduling */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            border: 2px solid #ff6600;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff6600;
+            color: #333;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Collapsible Button */
+        .collapsible {
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            padding: 10px 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-size: 1.2em;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            font-size: 1.2em;
+            float: right;
+        }
+
+        .collapsible.active:after {
+            content: '\2212';
+        }
+
+        /* Collapsible Content */
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f9f9f9;
+            padding: 0 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .collapsible-content ul {
+            list-style-type: none;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .collapsible-content ul li {
+            margin: 10px 0;
+            font-size: 1em;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>PoCo Works LLC</h1>
-    <h2>Home Repair Services</h2>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Schedule</a>
-    </nav>
-  </header>
+    <header>
+        <h1>PoCo Works LLC</h1>
+        <h2>Home Repair Services</h2>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Schedule</a>
+        </nav>
+    </header>
 
-  <section id="services">
-    <h2>What I Do</h2>
-    <p>Fixing, repairing, and improving homes for over 10 years. Carpentry, fabrication, plumbing, electrical, and more!</p>
+    <section id="services">
+        <h2>What I Do</h2>
+        <p>Fixing, repairing, and improving homes for over 10 years. Carpentry, fabrication, plumbing, electrical, and more!</p>
+        <button class="collapsible">More</button>
+        <div class="collapsible-content">
+            <ul>
+                <li><strong>Carpentry</strong>: Custom shelving, trim work, cabinets, doors</li>
+                <li><strong>Plumbing</strong>: Leaky faucets, toilet repairs, drains, pipes, showerheads, faucet and toilet replacements</li>
+                <li><strong>Hanging and Mounting</strong>: Art, mirrors, TVs, shelving</li>
+                <li><strong>Electrical</strong>: Light fixture, outlets, switches, ceiling fans, bathroom vents</li>
+                <li><strong>Painting</strong>: Interior and exterior painting</li>
+                <li><strong>Drywall</strong>: Walls, ceilings, plaster</li>
+                <li><strong>Flooring</strong>: Tile, wood, installation and repairs</li>
+                <li><strong>Smart Home Installations</strong>: Smart locks, cameras, thermostats</li>
+                <li><strong>Exterior</strong>: Downspouts, mailboxes, fencing, decks, window ACs</li>
+            </ul>
+        </div>
+    </section>
+
+ <section id="contact">
+        <h2>Schedule an Appointment</h2>
+        <p>Ready to get started? Click the button below to book an appointment and get a free estimate.</p>
+        <a href="https://calendly.com/pocoworksllc/appointment" class="btn">Schedule Now</a>
+    </section>
     
-    <!-- Collapsible Button for Additional Services -->
-    <button class="collapsible">More</button>
-    <div class="collapsible-content">
-       <ul>
-    <li><strong>Carpentry</strong>: Custom shelving, trim work, cabinets, doors</li>
-    <li><strong>Plumbing</strong>: Leaky faucets, toilet repairs, drains, pipes, showerheads, faucet and toilet replacements</li>
-    <li><strong>Hanging and Mounting</strong>: Art, mirrors, TVs, shelving</li>
-    <li><strong>Electrical</strong>: Light fixture, outlets, switches, ceiling fans, bathroom vents</li>
-    <li><strong>Painting</strong>: Interior and exterior painting</li>
-    <li><strong>Drywall</strong>: Walls, ceilings, plaster</li>
-    <li><strong>Flooring</strong>: Tile, wood, installation and repairs</li>
-    <li><strong>Smart Home Installations</strong>: Smart locks, cameras, thermostats</li>
-    <li><strong>Exterior</strong>: Downspouts, mailboxes, fencing, decks, window ACs</li>
-  </ul>
-    </div>
-  </section>
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="images/Dinning Room.jpg" alt="Dining Room">
+                    <div class="image-caption">
+                        <h3>Customization</h3>
+                        <p>Furniture assembly with custom shelving and lighting</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/Bathroom.jpg" alt="Bathroom">
+                    <div class="image-caption">
+                        <h3>Modern Bathroom</h3>
+                        <p>Full bathroom remodel with custom tilework</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/Window Trim" alt="Window Trim">
+                    <div class="image-caption">
+                        <h3>Window Trim Repair</h3>
+                        <p>Custom window trim and finishing work</p>
+                    </div>
+                </div>
+             </div>
+        </div>
+       
+       <div class="carousel-controls">
+    <span class="carousel-control prev-arrow" onclick="previousSlide()">&lt;</span>
+    <span class="carousel-control next-arrow" onclick="nextSlide()">&gt;</span>
+        </div>
+         
+        <div class="thumbnail-container">
+            <div class="thumbnail active" onclick="goToSlide(0)">
+                <img src="images/Dinning Room.jpg" alt="Dining Room Thumbnail">
+            </div>
+            <div class="thumbnail" onclick="goToSlide(1)">
+                <img src="images/Bathroom.jpg" alt="Bathroom Thumbnail">
+            </div>
+            <div class="thumbnail" onclick="goToSlide(2)">
+                <img src="images/Window Trim" alt="Window Trim Thumbnail">
+            </div>
+        </div>
+        <div class="modal" id="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modal-image">
+        </div>
+        
 
-  <section id="contact">
-    <h2>Schedule an Appointment</h2>
-    <p>Ready to get started? Click the button below to book an appointment and get a free estimate.</p>
-    <a href="https://calendly.com/pocoworksllc/appointment" class="btn">Schedule Now</a>
-  </section>
+    </section>
 
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="images/Dinning Room.jpg" alt="Dinning Room">
-      <img src="images/Bathroom.jpg" alt="Bathroom">
-      <img src="images/Window Trim.jpg" alt="Window Trim">
-    </div>
-  </section>
-  
-  <footer>
-    <p>PoCo Works LLC</p>
-  </footer>
+    <footer>
+        <p>PoCo Works LLC</p>
+    </footer>
 
-  <!-- JavaScript to handle the collapsible functionality -->
-  <script>
-    const collapsible = document.querySelector(".collapsible");
-    const content = document.querySelector(".collapsible-content");
+    <script>
+        // Collapsible content functionality
+        const collapsible = document.querySelector(".collapsible");
+        const content = document.querySelector(".collapsible-content");
 
-    collapsible.addEventListener("click", function() {
-      this.classList.toggle("active");
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-      }
-    });
-  </script>
+        collapsible.addEventListener("click", function() {
+            this.classList.toggle("active");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+
+        // Carousel functionality
+        let slideIndex = 0;
+        const container = document.querySelector('.carousel-container');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const totalSlides = slides.length;
+
+        function updateThumbnails() {
+            thumbnails.forEach((thumb, index) => {
+                if (index === slideIndex) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function showSlide(index) {
+            container.style.transform = `translateX(-${index * 100}%)`;
+            updateThumbnails();
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % totalSlides;
+            showSlide(slideIndex);
+        }
+
+        function previousSlide() {
+            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+            showSlide(slideIndex);
+        }
+
+        function goToSlide(index) {
+            slideIndex = index;
+            showSlide(slideIndex);
+        }
+
+        // Initialize by showing the first slide
+        showSlide(slideIndex);
+
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeModal = document.querySelector('.close');
+
+        document.querySelectorAll('.carousel-slide img').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                modalImage.src = this.src;
+            });
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
