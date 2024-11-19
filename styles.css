@@ -73,8 +73,56 @@ section {
 
 .carousel-slide img {
   width: 100%;
+  height: 300px;
+  object-fit: cover;
   cursor: pointer;
   border-radius: 8px;
+}
+
+/* Carousel controls (arrows) */
+.carousel-controls {
+  position: absolute; /* Overlay on the carousel */
+  top: 50%; /* Center vertically */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between; /* Arrows on left and right */
+  align-items: center; /* Align vertically */
+  pointer-events: none; /* Prevent blocking clicks on images */
+}
+
+.carousel-control {
+  pointer-events: all; /* Re-enable clicking on arrows */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  width: 40px; /* Arrow size */
+  height: 40px; /* Arrow size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em; /* Arrow size */
+  border-radius: 50%; /* Circular buttons */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-control:hover {
+  background-color: rgba(255, 102, 0, 0.8); /* Highlight on hover */
+}
+
+.prev-arrow {
+  margin-left: 10px; /* Left spacing */
+}
+
+.next-arrow {
+  margin-right: 10px; /* Right spacing */
+}
+
+/* Carousel container */
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
 /* Gallery Image Styling */
@@ -99,7 +147,7 @@ section {
 
 /* Modal (Zoom Effect) Styling */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -157,55 +205,7 @@ section {
 footer {
   background-color: #333;
   color: #fff;
+  text-align: center;
   padding: 10px;
-}
-
-footer p {
-  margin: 0;
-}
-
-/* Collapsible Button */
-.collapsible {
-  background-color: #333;
-  color: white;
-  cursor: pointer;
-  padding: 10px 20px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  font-size: 1.2em;
   margin-top: 20px;
-  border-radius: 5px;
-}
-
-.collapsible:after {
-  content: '\002B'; /* Plus sign */
-  font-size: 1.2em;
-  float: right;
-}
-
-.collapsible.active:after {
-  content: '\2212'; /* Minus sign */
-}
-
-/* Collapsible Content */
-.collapsible-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  background-color: #f9f9f9;
-  padding: 0 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-}
-
-.collapsible-content ul {
-  list-style-type: none;
-  padding: 10px;
-  text-align: left;
-}
-
-.collapsible-content ul li {
-  margin: 10px 0;
-  font-size: 1em;
 }
