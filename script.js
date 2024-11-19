@@ -12,32 +12,31 @@
     }
   });
 
-  // Carousel functionality
-  let slideIndex = 0;
-  const slides = document.querySelectorAll('.carousel-slide');
-  const totalSlides = slides.length;
+// Carousel functionality
+let slideIndex = 0;
+const container = document.querySelector('.carousel-container');
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.style.transform = `translateX(${(i - index) * 100}%)`;
-    });
-  }
+function showSlide(index) {
+    container.style.transform = `translateX(-${index * 100}%)`;
+}
 
-  function nextSlide() {
+function nextSlide() {
     slideIndex = (slideIndex + 1) % totalSlides;
     showSlide(slideIndex);
-  }
+}
 
-  function previousSlide() {
+function previousSlide() {
     slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
     showSlide(slideIndex);
-  }
+}
 
-  // Initialize by showing the first slide
-  showSlide(slideIndex);
+// Initialize by showing the first slide
+showSlide(slideIndex);
 
-  // Automatically go to the next slide every 3 seconds
-  setInterval(nextSlide, 3000); // Adjust the timing as needed
+// Automatically go to the next slide every 5 seconds
+setInterval(nextSlide, 5000);
 
   // Modal (Zoom) functionality for the gallery images
   const modal = document.getElementById('modal');
