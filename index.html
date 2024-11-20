@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoCo Works LLC Home Repair Services</title>
     <style>
-        /* Previous styles remain the same until carousel-controls */
         /* Base styles */
         body {
             font-family: 'Courier New', Courier, monospace;
@@ -66,31 +65,41 @@
         .carousel {
             display: flex;
             overflow: hidden;
-            width: 80%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 800px;
             margin: 20px auto;
             position: relative;
             border: 2px solid #333;
             border-radius: 8px;
+            height: 400px;
+        }
+
+        @media (max-width: 768px) {
+            .carousel {
+                width: 95%;
+                height: 300px;
+            }
         }
 
         .carousel-container {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            width: 100%;
+            height: 100%;
         }
 
         .carousel-slide {
             min-width: 100%;
             flex-shrink: 0;
             position: relative;
+            height: 100%;
         }
 
         .carousel-slide img {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
             cursor: pointer;
-            border-radius: 8px;
         }
 
         .image-caption {
@@ -98,12 +107,10 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 15px;
             text-align: left;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
         }
 
         .image-caption h3 {
@@ -117,23 +124,35 @@
             opacity: 0.9;
         }
 
-        /* Updated carousel controls and thumbnails */
+        /* Navigation buttons */
         .carousel-controls {
-            text-align: center;
-            padding: 10px;
-            margin: 10px auto;
-            width: 80%;
-            max-width: 600px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            pointer-events: none;
         }
 
         .carousel-control {
-            padding: 8px 16px;
-            margin: 0 5px;
-            cursor: pointer;
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.9);
             color: white;
             border: 2px solid #ff6600;
-            border-radius: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            padding: 0;
+            z-index: 10;
         }
 
         .carousel-control:hover {
@@ -141,24 +160,33 @@
             color: #333;
         }
 
+        /* Thumbnail styles */
         .thumbnail-container {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin: 15px auto;
-            width: 80%;
-            max-width: 600px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            flex-wrap: wrap;
         }
 
         .thumbnail {
-            width: 80px;
-            height: 60px;
+            width: 100px;
+            height: 75px;
             border: 2px solid #333;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
             opacity: 0.7;
             overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .thumbnail {
+                width: 70px;
+                height: 52.5px;
+            }
         }
 
         .thumbnail img {
@@ -178,7 +206,7 @@
             transform: scale(1.05);
         }
 
-        /* Modal (Zoom Effect) Styling */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -234,17 +262,6 @@
             color: #333;
         }
 
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-        }
-
-        footer p {
-            margin: 0;
-        }
-
         /* Collapsible Button */
         .collapsible {
             background-color: #333;
@@ -290,6 +307,17 @@
             margin: 10px 0;
             font-size: 1em;
         }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -321,13 +349,13 @@
             </ul>
         </div>
     </section>
-
- <section id="contact">
+    
+    <section id="contact">
         <h2>Schedule an Appointment</h2>
         <p>Ready to get started? Click the button below to book an appointment and get a free estimate.</p>
         <a href="https://calendly.com/pocoworksllc/appointment" class="btn">Schedule Now</a>
     </section>
-    
+
     <section id="gallery">
         <h2>Gallery</h2>
         <div class="carousel">
@@ -349,18 +377,18 @@
                 <div class="carousel-slide">
                     <img src="images/Window Trim.jpg" alt="Window Trim">
                     <div class="image-caption">
-                        <h3>Window Trim Repair</h3>
+                        <h3>Woodworking</h3>
                         <p>Custom window trim and finishing work</p>
                     </div>
                 </div>
-             </div>
+
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button onclick="previousSlide()" class="carousel-control">&lt;</button>
+                <button onclick="nextSlide()" class="carousel-control">&gt;</button>
+            </div>
         </div>
-       
-       <div class="carousel-controls">
-    <span class="carousel-control prev-arrow" onclick="previousSlide()">&lt;</span>
-    <span class="carousel-control next-arrow" onclick="nextSlide()">&gt;</span>
-        </div>
-         
         <div class="thumbnail-container">
             <div class="thumbnail active" onclick="goToSlide(0)">
                 <img src="images/Dinning Room.jpg" alt="Dining Room Thumbnail">
@@ -371,13 +399,12 @@
             <div class="thumbnail" onclick="goToSlide(2)">
                 <img src="images/Window Trim.jpg" alt="Window Trim Thumbnail">
             </div>
+            
         </div>
         <div class="modal" id="modal">
             <span class="close">&times;</span>
             <img class="modal-content" id="modal-image">
         </div>
-        
-
     </section>
 
     <footer>
@@ -385,78 +412,84 @@
     </footer>
 
     <script>
-        // Collapsible content functionality
-        const collapsible = document.querySelector(".collapsible");
-        const content = document.querySelector(".collapsible-content");
+        document.addEventListener('DOMContentLoaded', function() {
+            // Collapsible content functionality
+            const collapsible = document.querySelector(".collapsible");
+            const content = document.querySelector(".collapsible-content");
 
-        collapsible.addEventListener("click", function() {
-            this.classList.toggle("active");
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
+            if (collapsible && content) {
+                collapsible.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
             }
-        });
 
-        // Carousel functionality
-        let slideIndex = 0;
-        const container = document.querySelector('.carousel-container');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const totalSlides = slides.length;
+            // Carousel functionality
+            let slideIndex = 0;
+            const container = document.querySelector('.carousel-container');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const totalSlides = slides.length;
 
-        function updateThumbnails() {
-            thumbnails.forEach((thumb, index) => {
-                if (index === slideIndex) {
-                    thumb.classList.add('active');
-                } else {
-                    thumb.classList.remove('active');
-                }
-            });
-        }
+            function updateThumbnails() {
+                thumbnails.forEach((thumb, index) => {
+                    if (index === slideIndex) {
+                        thumb.classList.add('active');
+                    } else {
+                        thumb.classList.remove('active');
+                    }
+                });
+            }
 
-        function showSlide(index) {
-            container.style.transform = `translateX(-${index * 100}%)`;
-            updateThumbnails();
-        }
+            function showSlide(index) {
+                slideIndex = index;
+                container.style.transform = `translateX(-${index * 100}%)`;
+                updateThumbnails();
+            }
 
-        function nextSlide() {
-            slideIndex = (slideIndex + 1) % totalSlides;
-            showSlide(slideIndex);
-        }
+            window.nextSlide = function() {
+                slideIndex = (slideIndex + 1) % totalSlides;
+                showSlide(slideIndex);
+            };
 
-        function previousSlide() {
-            slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-            showSlide(slideIndex);
-        }
+            window.previousSlide = function() {
+                slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+                showSlide(slideIndex);
+            };
 
-        function goToSlide(index) {
-            slideIndex = index;
-            showSlide(slideIndex);
-        }
+            window.goToSlide = function(index) {
+                showSlide(index);
+            };
 
-        // Initialize by showing the first slide
-        showSlide(slideIndex);
+            // Initialize by showing the first slide
+            showSlide(0);
 
-        // Modal functionality
-        const modal = document.getElementById('modal');
-        const modalImage = document.getElementById('modal-image');
-        const closeModal = document.querySelector('.close');
+            // Modal functionality
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            const closeModal = document.querySelector('.close');
 
-        document.querySelectorAll('.carousel-slide img').forEach(img => {
-            img.addEventListener('click', function() {
-                modal.style.display = 'flex';
-                modalImage.src = this.src;
-            });
-        });
+            if (modal && modalImage && closeModal) {
+                document.querySelectorAll('.carousel-slide img').forEach(img => {
+                    img.addEventListener('click', function() {
+                        modal.style.display = 'flex';
+                        modalImage.src = this.src;
+                    });
+                });
 
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+                closeModal.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
 
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+                window.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
             }
         });
     </script>
