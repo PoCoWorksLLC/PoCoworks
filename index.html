@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoCo Works LLC Home Repair Services</title>
     <style>
-        /* Base styles */
         body {
             font-family: 'Courier New', Courier, monospace;
             background-color: #f0f0f0;
@@ -27,7 +26,6 @@
             margin: 0;
         }
 
-        /* Navigation styles */
         nav {
             margin-top: 10px;
             display: flex;
@@ -46,7 +44,6 @@
             text-decoration: underline;
         }
 
-        /* Sections */
         section {
             padding: 50px 20px;
         }
@@ -61,7 +58,6 @@
             border-top: 4px solid #333;
         }
 
-        /* Carousel */
         .carousel {
             display: flex;
             overflow: hidden;
@@ -124,7 +120,6 @@
             opacity: 0.9;
         }
 
-        /* Navigation buttons */
         .carousel-controls {
             position: absolute;
             top: 50%;
@@ -151,7 +146,6 @@
             pointer-events: auto;
             transition: all 0.3s ease;
             font-size: 1.2em;
-            padding: 0;
             z-index: 10;
         }
 
@@ -160,36 +154,6 @@
             color: #333;
         }
 
-        /* Thumbnail styles */
-        .thumbnail-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px auto;
-            width: 90%;
-            max-width: 800px;
-            flex-wrap: wrap;
-        }
-
-        .thumbnail {
-            width: 100px;
-            height: 75px;
-            border: 2px solid #333;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0.7;
-            overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            .thumbnail {
-                width: 70px;
-                height: 52.5px;
-            }
-        }
-
-        /* Updated Thumbnail styles */
         .thumbnail-container {
             display: flex;
             justify-content: center;
@@ -225,7 +189,17 @@
             object-fit: cover;
         }
 
-        /* Updated Modal styles for better mobile viewing */
+        .thumbnail.active {
+            border-color: #ff6600;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -250,52 +224,6 @@
             background-color: #f9f9f9;
         }
 
-        @media (max-width: 768px) {
-            .close {
-                top: 10px;
-                right: 15px;
-                font-size: 28px;
-            }
-        }
-
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .thumbnail.active {
-            border-color: #ff6600;
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .thumbnail:hover {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            border: 3px solid #ff6600;
-            border-radius: 8px;
-        }
-
         .close {
             position: absolute;
             top: 20px;
@@ -313,7 +241,6 @@
             cursor: pointer;
         }
 
-        /* Button for scheduling */
         .btn {
             display: inline-block;
             padding: 10px 20px;
@@ -331,7 +258,6 @@
             color: #333;
         }
 
-        /* Collapsible Button */
         .collapsible {
             background-color: #333;
             color: white;
@@ -355,7 +281,6 @@
             content: '\2212';
         }
 
-        /* Collapsible Content */
         .collapsible-content {
             max-height: 0;
             overflow: hidden;
@@ -377,7 +302,6 @@
             font-size: 1em;
         }
 
-        /* Footer */
         footer {
             background-color: #333;
             color: #fff;
@@ -450,7 +374,6 @@
                         <p>Custom window trim and finishing work</p>
                     </div>
                 </div>
-
             </div>
             <div class="carousel-controls">
                 <button onclick="previousSlide()" class="carousel-control">&lt;</button>
@@ -467,7 +390,6 @@
             <div class="thumbnail" onclick="goToSlide(2)">
                 <img src="images/Window Trim.jpg" alt="Window Trim Thumbnail">
             </div>
-            
         </div>
         <div class="modal" id="modal">
             <span class="close">&times;</span>
